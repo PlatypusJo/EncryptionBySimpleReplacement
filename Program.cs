@@ -9,8 +9,8 @@ namespace Lab1DP
         static void Main(string[] args)
         {
 
-            uint decCoeff = 5;
-            uint shiftCoeff = 7;
+            uint decCoeff = 9;
+            uint shiftCoeff = 133;
             string[] plainTextAlphabet = ["а", "б", "в", "г", "д", "е", "ж", "з", 
                                           "и", "к", "л", "м", "н", "о", "п", "р", 
                                           "с", "т", "у", "ф", "х", "ц", "ч", "ш", 

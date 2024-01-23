@@ -14,14 +14,14 @@ namespace Lab1DP
             File.WriteAllText(filePath, string.Empty);
             StreamWriter writer = new(filePath);
             plainText.ToLower();
-            string cipherText = "";
+            string cipherText = string.Empty;
             for (int i = 0; i < plainText.Length; i++)
             {
-                int symCodePlainText = Array.IndexOf(plainTextAlphabet, plainText[i].ToString());
-                if (symCodePlainText >= 0)
+                int codeSymPlain = Array.IndexOf(plainTextAlphabet, plainText[i].ToString());
+                if (codeSymPlain >= 0)
                 {
-                    uint symCodeCipherText = MathTools.CalcCodeSymCipherText(shiftCoeff, decCoeff, (uint)symCodePlainText, (uint)plainTextAlphabet.Length);
-                    cipherText += cipherTextAlphabet[symCodeCipherText];
+                    uint codeSymCipher = MathTools.CalcCodeSymCipherText(shiftCoeff, decCoeff, (uint)codeSymPlain, (uint)plainTextAlphabet.Length);
+                    cipherText += cipherTextAlphabet[codeSymCipher];
                 }
                 else
                 {
@@ -36,23 +36,23 @@ namespace Lab1DP
         {
             string filePath = "./decryptedText.txt";
             File.WriteAllText(filePath, string.Empty);
-            StreamWriter writer = new StreamWriter(filePath);
+            StreamWriter writer = new(filePath);
             cipherText.ToLower();
-            string plainText = "";
+            string plainText = string.Empty;
             bool isSyllable = false; // флаг слога
             string symbol = string.Empty;
             for (int i = 0; i < cipherText.Length; i++)
             {
                 symbol = isSyllable ? symbol + cipherText[i].ToString() : cipherText[i].ToString();
-                int symCodeCipherText = Array.IndexOf(cipherTextAlphabet, symbol);
-                if (symCodeCipherText < 0 && plainTextAlphabet.Contains(symbol))
+                int codeSymCipher = Array.IndexOf(cipherTextAlphabet, symbol);
+                if (codeSymCipher < 0 && plainTextAlphabet.Contains(symbol))
                 {
                     isSyllable = true;
                 }
-                else if (symCodeCipherText >= 0)
+                else if (codeSymCipher >= 0)
                 {
-                    uint symCodePlainText = MathTools.CalcCodeSymPlainText(shiftCoeff, decCoeff, (uint)symCodeCipherText, (uint)cipherTextAlphabet.Length);
-                    plainText += plainTextAlphabet[symCodePlainText];
+                    uint codeSymPlain = MathTools.CalcCodeSymPlainText(shiftCoeff, decCoeff, (uint)codeSymCipher, (uint)cipherTextAlphabet.Length);
+                    plainText += plainTextAlphabet[codeSymPlain];
                     isSyllable = false;
                 }
                 else
