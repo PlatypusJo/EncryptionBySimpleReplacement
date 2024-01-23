@@ -45,15 +45,15 @@ namespace Lab1DP
             {
                 symbol = isSyllable ? symbol + cipherText[i].ToString() : cipherText[i].ToString();
                 int codeSymCipher = Array.IndexOf(cipherTextAlphabet, symbol);
-                if (codeSymCipher < 0 && plainTextAlphabet.Contains(symbol))
-                {
-                    isSyllable = true;
-                }
-                else if (codeSymCipher >= 0)
+                if (codeSymCipher >= 0)
                 {
                     uint codeSymPlain = MathTools.CalcCodeSymPlainText(shiftCoeff, decCoeff, (uint)codeSymCipher, (uint)cipherTextAlphabet.Length);
                     plainText += plainTextAlphabet[codeSymPlain];
                     isSyllable = false;
+                }
+                else if (plainTextAlphabet.Contains(symbol))
+                {
+                    isSyllable = true;
                 }
                 else
                 {
