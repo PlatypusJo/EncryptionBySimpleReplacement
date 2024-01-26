@@ -9,8 +9,6 @@ namespace Lab1DP
         static void Main(string[] args)
         {
 
-            uint decCoeff = 9;
-            uint shiftCoeff = 133;
             string[] plainTextAlphabet = ["а", "б", "в", "г", "д", "е", "ж", "з", 
                                           "и", "к", "л", "м", "н", "о", "п", "р", 
                                           "с", "т", "у", "ф", "х", "ц", "ч", "ш", 
@@ -20,7 +18,8 @@ namespace Lab1DP
                                            "чу", "ше", "ам", "ик", "ъ", "то", "ь", "ю", 
                                            "я", "ф", "ас", "бе", "за", "гу", "ди", "е",];
 
-            MathTools.CreateTable(cipherTextAlphabet, plainTextAlphabet, shiftCoeff, decCoeff);
+            uint shiftCoeff = 22;
+            MathTools.CreateTable(cipherTextAlphabet, plainTextAlphabet, shiftCoeff);
 
             string filePath;
             StreamReader reader;
@@ -38,7 +37,7 @@ namespace Lab1DP
                     filePath = Console.ReadLine();
                     reader = new StreamReader(filePath);
                     string text = reader.ReadToEnd();
-                    encryptorDecryptor.Encrypt(text, cipherTextAlphabet, plainTextAlphabet, shiftCoeff, decCoeff);
+                    encryptorDecryptor.Encrypt(text, cipherTextAlphabet, plainTextAlphabet, shiftCoeff);
                     reader.Close();
                     Console.WriteLine("Текст зашифрован.");
                 }
@@ -48,7 +47,7 @@ namespace Lab1DP
                     filePath = Console.ReadLine();
                     reader = new StreamReader(filePath);
                     string text = reader.ReadToEnd();
-                    encryptorDecryptor.Decrypt(text, cipherTextAlphabet, plainTextAlphabet, shiftCoeff, decCoeff);
+                    encryptorDecryptor.Decrypt(text, cipherTextAlphabet, plainTextAlphabet, shiftCoeff);
                     reader.Close();
                     Console.WriteLine("Текст расшифрован.");
                 }

@@ -8,6 +8,8 @@ namespace Lab1DP
 {
     public static class MathTools
     {
+        #region Bad
+
         public static uint InverseValue(uint value, uint mod)
         {
             uint a, b, x1, x2, x;
@@ -42,5 +44,23 @@ namespace Lab1DP
                 cipherTextAlphabet[codeSym] = buf[i];
             }
         }
+
+        #endregion
+        
+        public static uint CalcCodeSymCipherText(uint shiftCoeff, uint codeSymPlain, uint alphabetSize) => (codeSymPlain - shiftCoeff + alphabetSize) % alphabetSize;
+
+        public static uint CalcCodeSymPlainText(uint shiftCoeff, uint codeSymCipher, uint alphabetSize) => (codeSymCipher + shiftCoeff) % alphabetSize;
+
+        public static void CreateTable(string[] cipherTextAlphabet, string[] plainTextAlphabet, uint shiftCoeff)
+        {
+            string[] buf = new string[cipherTextAlphabet.Length];
+            Array.Copy(cipherTextAlphabet, buf, cipherTextAlphabet.Length);
+            for (int i = 0; i < plainTextAlphabet.Length; i++)
+            {
+                uint codeSym = CalcCodeSymCipherText(shiftCoeff, (uint)i, (uint)plainTextAlphabet.Length);
+                cipherTextAlphabet[codeSym] = buf[i];
+            }
+        }
+
     }
 }
